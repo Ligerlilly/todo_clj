@@ -14,6 +14,12 @@
       (model/create todo))
     (ring/redirect "/"))
 
+(defn delete [todo]
+    (when-not (str/blank? todo)
+      (model/delete todo))
+      (ring/response "todo deleted"))
+
 (defroutes routes
     (GET  "/" [] (index))
-    (POST "/" [todo] (create todo)))
+    (POST "/" [todo] (create todo))
+    (POST "/delete" [todo] (delete todo)))

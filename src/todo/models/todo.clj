@@ -9,3 +9,6 @@
 
   (defn create [todo]
     (sql/insert! spec :todos [:name] [todo]))
+
+  (defn delete [todo]
+    (sql/execute! spec ["DELETE FROM todos WHERE name =?" todo]))
